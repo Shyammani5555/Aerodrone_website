@@ -1,10 +1,399 @@
-<!DOCTYPE html>
-<html>
+<!--
+AERODRONE Club — Single-file website
+How to use:
+1. Save this file as index.html
+2. Open in browser (double-click) to preview locally.
+3. To publish: push to GitHub and enable GitHub Pages or upload to any static host.
+
+Replace placeholder images and text where indicated.
+-->
+
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Aerodrone Club</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AERODRONE Club</title>
+  <meta name="description" content="AERODRONE Club — Drone club for students: projects, events, workshops, gallery, and membership." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#1fb6ff; --muted:#98a0b3; --glass: rgba(255,255,255,0.03);
+      --radius:14px; --max:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #071025 100%);color:#e6eef8}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6ef0c7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#042233}
+    nav{display:flex;gap:14px;align-items:center}
+    nav a{padding:8px 12px;border-radius:10px;color:var(--muted);font-weight:600}
+    nav a.active, nav a:hover{background:var(--glass);color:#fff}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;padding:36px 0;align-items:center}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:20px;padding:26px}
+    h1{font-size:32px;margin:0 0 12px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+    .cta{display:flex;gap:12px}
+    .btn{background:var(--accent);color:#042233;padding:10px 16px;border-radius:10px;font-weight:700}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#fff}
+
+    /* stats */
+    .stats{display:flex;gap:12px;margin-top:18px}
+    .stat{background:var(--glass);padding:10px 14px;border-radius:12px;text-align:center}
+    .stat h3{margin:0;font-size:18px}
+    .stat p{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    /* sections */
+    section{padding:54px 0;border-top:1px solid rgba(255,255,255,0.02)}
+    .grid{display:grid;gap:18px}
+    .two{grid-template-columns:1fr 420px}
+
+    /* team / cards */
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:14px}
+    .avatar{width:72px;height:72px;border-radius:10px;background:#072033;display:inline-block}
+    .muted{color:var(--muted)}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+    .gallery img{width:100%;height:110px;object-fit:cover;border-radius:10px;cursor:pointer;display:block}
+
+    /* forms */
+    form{display:grid;gap:10px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:10px;color:#eaf5ff}
+    textarea{min-height:110px}
+
+    footer{padding:34px 0;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+      .mobile-nav{display:flex}
+      header {gap:8px}
+    }
+
+    /* simple modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,23,0.6);z-index:50}
+    .modal.show{display:flex}
+    .modal .panel{background:#071426;padding:18px;border-radius:14px;max-width:900px;width:94%}
+
+    /* tiny helpers */
+    .right{justify-self:end}
+    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700}
+  </style>
 </head>
 <body>
-    <h1>Welcome to Aerodrone Club</h1>
-    <p>This is our simple website.</p>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">AD</div>
+        <div>
+          <div style="font-weight:800">AERODRONE Club</div>
+          <div class="muted" style="font-size:13px">Drone club — Innovation • Flight • Teamwork</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+        <a href="#events">Events</a>
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="right">
+        <button class="btn" id="joinBtn">Join Us</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-card">
+          <h1>AERODRONE Club — Reach the sky, build the future</h1>
+          <p class="lead">We are a university drone club focused on designing, building, and flying drones. We run workshops, host competitions, and build real projects that solve problems.</p>
+          <div class="cta">
+            <a href="#projects" class="btn">Our Projects</a>
+            <a href="#events" class="btn ghost">Upcoming Events</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><h3>24+</h3><p>Projects</p></div>
+            <div class="stat"><h3>120+</h3><p>Members</p></div>
+            <div class="stat"><h3>8</h3><p>Workshops/Yr</p></div>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:13px">Follow us: <span class="chip">Instagram</span> <span class="chip">YouTube</span> <span class="chip">GitHub</span></div>
+        </div>
+
+        <div style="border-radius:18px;overflow:hidden;background:linear-gradient(0deg, rgba(255,255,255,0.02), transparent);padding:12px">
+          <img alt="drone" src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7d438d2d4f2a0a37b9b3b8a2e3f2b7b9" style="width:100%;height:380px;object-fit:cover;border-radius:12px;display:block"/>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="grid two">
+          <div>
+            <h2>About AERODRONE Club</h2>
+            <p class="muted">AERODRONE is a student-led club that brings together enthusiasts from electronics, computer science, and mechanical backgrounds to learn and innovate in UAVs (Unmanned Aerial Vehicles). Our activities include hands-on builds, coding autopilots, competitions, community outreach, and research.</p>
+
+            <h3 style="margin-top:18px">What we do</h3>
+            <ul class="muted">
+              <li>Design & build drones — fixed-wing, quadcopters, VTOL</li>
+              <li>Flight testing and data analysis</li>
+              <li>Workshops on electronics, flight controllers, and embedded systems</li>
+              <li>Collaborative projects with industry and faculty</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="card">
+              <h3>Join a project team</h3>
+              <p class="muted">Roles: Electronics, Embedded Software, Mechanical, CAD, Control Systems, Media</p>
+              <p style="margin-top:12px">Start by filling the membership form — we'll match you to a team based on interests and skills.</p>
+              <button class="btn" id="joinCard">Become a Member</button>
+            </div>
+
+            <div style="height:18px"></div>
+
+            <div class="card">
+              <h3>Club Achievements</h3>
+              <ul class="muted">
+                <li>Winner — Intercollegiate Drone Challenge 2024</li>
+                <li>Best Innovation Award — TechFest 2023</li>
+                <li>Published demo in student research showcase</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team">
+        <h2>Our Team</h2>
+        <div class="cards">
+          <!-- Replace with real members -->
+          <div class="card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="avatar"></div>
+              <div>
+                <div style="font-weight:800">Aisha Khan</div>
+                <div class="muted">President • Embedded Systems</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:10px">Leads the avionics and flight control teams.</p>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="avatar"></div>
+              <div>
+                <div style="font-weight:800">Rohit Verma</div>
+                <div class="muted">VP • Mechanical & CAD</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:10px">Handles frame design, structural testing, and fabrication.</p>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="avatar"></div>
+              <div>
+                <div style="font-weight:800">Priya N.</div>
+                <div class="muted">Lead Pilot • Flight Ops</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:10px">Certified pilot and flight test coordinator.</p>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div class="avatar"></div>
+              <div>
+                <div style="font-weight:800">Shyam M.</div>
+                <div class="muted">Embedded Dev • Media</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:10px">Works on autopilot firmware and club media content.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="events">
+        <h2>Events & Competitions</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Intercollegiate Drone Race — Dec 12, 2025</h3>
+            <p class="muted">Open to student teams. Categories: endurance, obstacle, and freestyle. Register by Nov 30.</p>
+            <p style="margin-top:8px"><strong>Venue:</strong> Main Sports Field</p>
+          </div>
+
+          <div class="card">
+            <h3>Autonomy Workshop — Jan 20, 2026</h3>
+            <p class="muted">Two-day hands-on workshop covering ROS basics, SLAM, and path planning.</p>
+          </div>
+
+          <div class="card">
+            <h3>Community Outreach — Drone Demo</h3>
+            <p class="muted">We run demo flights for local schools to inspire STEM students.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Agri-Scout — Crop Health Monitoring</h3>
+            <p class="muted">A quadcopter with multispectral camera for NDVI mapping and crop analysis.</p>
+          </div>
+          <div class="card">
+            <h3>Auto-Land — Precision Landing</h3>
+            <p class="muted">Computer vision based landing pad detection and precision touchdown system.</p>
+          </div>
+          <div class="card">
+            <h3>Delivery Prototype</h3>
+            <p class="muted">Lightweight VTOL frame for campus-based parcel delivery experiments.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="https://images.unsplash.com/photo-1508615078905-2f3c1a8f3c23?q=80&w=800&auto=format&fit=crop&s=2b1b2c3d4e" alt="gallery1" data-large="https://images.unsplash.com/photo-1508615078905-2f3c1a8f3c23?q=80&w=1600&auto=format&fit=crop&s=2b1b2c3d4e">
+          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=800&auto=format&fit=crop&s=1a2b3c4d5e" alt="gallery2" data-large="https://images.unsplash.com/photo-1512820790803-83ca734da794?q=80&w=1600&auto=format&fit=crop&s=1a2b3c4d5e">
+          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=800&auto=format&fit=crop&s=9f8e7d6c5b" alt="gallery3" data-large="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1600&auto=format&fit=crop&s=9f8e7d6c5b">
+          <img src="https://images.unsplash.com/photo-1521170665346-3f21e2291d8f?q=80&w=800&auto=format&fit=crop&s=c3b2a1d0e9" alt="gallery4" data-large="https://images.unsplash.com/photo-1521170665346-3f21e2291d8f?q=80&w=1600&auto=format&fit=crop&s=c3b2a1d0e9">
+        </div>
+      </section>
+
+      <section id="workshops">
+        <h2>Workshops & Training</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>Beginner Drone Building</h3>
+            <p class="muted">Learn basics of motors, ESCs, propellers, and basic flight control.</p>
+          </div>
+          <div class="card">
+            <h3>Embedded Systems for Drones</h3>
+            <p class="muted">Hands-on with flight controllers, sensors, and ArduPilot/ PX4 basics.</p>
+          </div>
+          <div class="card">
+            <h3>Computer Vision & Autonomy</h3>
+            <p class="muted">ROS crash-course and vision pipelines for navigation and detection.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact & Membership</h2>
+        <div class="grid two">
+          <div>
+            <h3>Contact Us</h3>
+            <p class="muted">Email: aerodrone@university.edu<br/>Club Lead: +91 98765 43210</p>
+            <form id="contactForm">
+              <input type="text" id="name" placeholder="Your name" required />
+              <input type="email" id="email" placeholder="Your email" required />
+              <textarea id="msg" placeholder="Message"></textarea>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div>
+
+          <div>
+            <h3>Membership Form</h3>
+            <form id="memberForm">
+              <input type="text" id="mname" placeholder="Full name" required />
+              <input type="email" id="memail" placeholder="Email" required />
+              <select id="role">
+                <option>Interested roles: Electronics</option>
+                <option>Embedded Software</option>
+                <option>Mechanical & CAD</option>
+                <option>Flight Ops</option>
+                <option>Media</option>
+              </select>
+              <input type="text" id="skills" placeholder="Skills / Tools you know (comma separated)" />
+              <button type="submit" class="btn">Apply</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>AERODRONE Club</strong>
+          <div class="muted">University Campus — 2025</div>
+        </div>
+        <div class="muted">Made with ❤ by AERODRONE Members</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- modal lightbox -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <strong id="modalTitle">Image</strong>
+        <button onclick="closeModal()" style="background:transparent;border:none;color:#eaf5ff;font-weight:800">✕</button>
+      </div>
+      <img id="modalImg" src="" style="width:100%;height:60vh;object-fit:contain;border-radius:10px"/>
+      <div style="margin-top:8px;color:var(--muted);font-size:13px">Click outside or press Esc to close.</div>
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll and active nav highlight
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click', e=>{
+      e.preventDefault();
+      document.querySelectorAll('nav a').forEach(x=>x.classList.remove('active'));
+      a.classList.add('active');
+      const id=a.getAttribute('href');
+      document.querySelector(id).scrollIntoView({behavior:'smooth',block:'start'});
+    }));
+
+    // Simple modal for gallery
+    const modal=document.getElementById('modal');
+    const modalImg=document.getElementById('modalImg');
+    const modalTitle=document.getElementById('modalTitle');
+    document.querySelectorAll('.gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        modalImg.src = img.dataset.large || img.src;
+        modalTitle.textContent = img.alt || 'Gallery Image';
+        modal.classList.add('show');
+        modal.setAttribute('aria-hidden','false');
+      })
+    });
+    function closeModal(){ modal.classList.remove('show'); modal.setAttribute('aria-hidden','true'); }
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
+
+    // Forms (local demo behavior)
+    document.getElementById('contactForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Thanks! Message sent (demo). We will contact you soon.');
+      e.target.reset();
+    });
+    document.getElementById('memberForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Membership application received (demo). Check your email for next steps.');
+      e.target.reset();
+    });
+
+    // Join buttons scroll to membership
+    document.getElementById('joinBtn').addEventListener('click', ()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('joinCard').addEventListener('click', ()=>document.getElementById('contact').scrollIntoView({behavior:'smooth'}));
+
+    // Simple responsive menu (show/hide) - basic
+    // Future: add mobile menu button
+  </script>
 </body>
 </html>
