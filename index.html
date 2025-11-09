@@ -107,7 +107,12 @@ Replace placeholder images and text where indicated.
     /* tiny helpers */
     .right{justify-self:end}
     .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700}
-  </style>
+  @keyframes fly {
+  0% { transform: translateX(-30px) rotate(0deg); }
+  50% { transform: translateX(20px) rotate(10deg); }
+  100% { transform: translateX(-30px) rotate(0deg); }
+}
+</style>
   <style>
 body {
     margin: 0;
@@ -128,17 +133,25 @@ body {
   margin-top: 30px;
   margin-bottom: 30px;
   font-family: 'Poppins', sans-serif;
-  font-size: 80px;      /* MEDIUM SIZE */
+  font-size: 80px;
   font-weight: 900;
   color: white;
-
-  /* clear 3D shadow */
   text-shadow:
     4px 4px 0px #000000,
     8px 8px 0px #333333;
+  position: relative;
+  display: inline-block;
 ">
   AERODRONE Club
+  <img src="rocketimage.jpg" class="flying-rocket" style="
+    position: absolute;
+    top: -20px;
+    right: -120px;
+    width: 100px;
+    animation: fly 3s infinite linear;
+  ">
 </div>
+
 <!-- END MEDIUM 3D TITLE -->
   <div class="container">
 <header>
