@@ -104,16 +104,17 @@ Replace placeholder images and text where indicated.
     .modal.show{display:flex}
     .modal .panel{background:#071426;padding:18px;border-radius:14px;max-width:900px;width:94%}
 
-/* tiny helpers */
 .right {
-  position: absolute;  /* absolute positioning */
-  top: 10px;           /* distance from top */
-  right: 10px;         /* distance from right */
+  position: absolute;
+  top: 60%;            /* increased from 50% to 60% to move it down */
+  transform: translateY(-50%);
+  right: 30px;
 }
 
 header {
-  position: relative;   /* make header a positioning context */
+  position: relative;       /* make header a reference for absolute positioning */
 }
+
 
 .chip {
   display:inline-block;
@@ -158,32 +159,28 @@ body {
 <body>
 <body>
 
-    <!-- BIG 3D TITLE -->
-  <!-- MEDIUM 3D TITLE -->
-<div style="
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 80px;
-  font-weight: 900;
-  color: white;
-  text-shadow:
-    4px 4px 0px #000000,
-    8px 8px 0px #333333;
-  position: relative;
-  display: inline-block;
-">
-  AERODRONE Club
-  <img src="rocketimage.jpg" class="flying-rocket" style="
-    position: absolute;
-    top: -20px;
-    right: -120px;
-    width: 100px;
-    animation: fly 3s infinite linear;
-  ">
-</div>
+<header style="position:relative;">
+  <div class="title-wrapper" style="font-size:80px; font-weight:900; color:white; display:flex; align-items:center; gap:10px; text-shadow: 4px 4px 0px #000, 8px 8px 0px #333;">
+    AERODRONE Club
+    <img src="rocketimage.jpg" class="flying-rocket" style="width:100px; animation:fly 3s infinite linear;">
+  </div>
+
+  <div class="right">
+    <button class="btn" id="joinBtn">Join Us</button>
+  </div>
+</header>
+
+<nav aria-label="Main navigation">
+  <a href="#home" class="active">Home</a>
+  <a href="#about">About</a>
+  <a href="#team">Team</a>
+  <a href="#events">Events</a>
+  <a href="#projects">Projects</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#workshops">Workshops</a>
+  <a href="#contact">Contact</a>
+</nav>
+
 
 <!-- END MEDIUM 3D TITLE -->
   <div class="container">
