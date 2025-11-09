@@ -104,10 +104,25 @@ Replace placeholder images and text where indicated.
     .modal.show{display:flex}
     .modal .panel{background:#071426;padding:18px;border-radius:14px;max-width:900px;width:94%}
 
-  /* tiny helpers */
-.right{justify-self:end}
-.chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700}
+/* tiny helpers */
+.right {
+  position: absolute;  /* absolute positioning */
+  top: 10px;           /* distance from top */
+  right: 10px;         /* distance from right */
+}
 
+header {
+  position: relative;   /* make header a positioning context */
+}
+
+.chip {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.02);
+  font-weight:700;
+}
+ 
 /* title wrapper style */
 .title-wrapper {
   font-size: 48px;
