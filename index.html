@@ -104,21 +104,39 @@ Replace placeholder images and text where indicated.
     .modal.show{display:flex}
     .modal .panel{background:#071426;padding:18px;border-radius:14px;max-width:900px;width:94%}
 
-    /* tiny helpers */
-    .right{justify-self:end}
-    .chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700}
-  @keyframes fly {
+  /* tiny helpers */
+.right{justify-self:end}
+.chip{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-weight:700}
+
+/* title wrapper style */
+.title-wrapper {
+  font-size: 48px;
+  font-weight: 900;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* flying animation */
+@keyframes fly {
   0% { transform: translateX(-30px) rotate(0deg); }
   50% { transform: translateX(20px) rotate(10deg); }
   100% { transform: translateX(-30px) rotate(0deg); }
 }
 </style>
+
   <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #001133; /* Dark Blue */
     color: white; /* Make text visible */
+}
+    .flying-object {
+  width: 40px;
+  margin-left: 10px;
+  animation: fly 2s infinite ease-in-out;
 }
 </style>
 </head>
