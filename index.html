@@ -18,30 +18,38 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: #000010;
       color: white;
       overflow: hidden;
     }
 
-    /* Heading setup */
+    /* Background video */
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      filter: brightness(0.3);
+    }
+
+    /* Main heading animation */
     h1 {
-      position: relative;
       font-size: 80px;
       font-weight: 900;
       letter-spacing: 5px;
+      color: #ffffff;
       text-transform: uppercase;
       display: flex;
       gap: 8px;
-      color: white;
       text-shadow:
         2px 2px 0 #999,
         4px 4px 0 #666,
         6px 6px 0 #333,
         8px 8px 20px rgba(255, 255, 255, 0.5);
-      overflow: hidden;
     }
 
-    /* Each letter flies in */
     h1 span {
       opacity: 0;
       transform: translate(var(--x), var(--y)) scale(0.2) rotate(var(--r));
@@ -55,25 +63,7 @@
       }
     }
 
-    /* 💡 Blue light sweep after assembly */
-    h1::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -150%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, rgba(0,255,255,0.8), transparent);
-      transform: skewX(-20deg);
-      animation: sweep 2s ease-in-out 3s forwards;
-    }
-
-    @keyframes sweep {
-      0% { left: -150%; }
-      100% { left: 150%; }
-    }
-
-    /* Social buttons */
+    /* Social icons */
     .socials {
       display: flex;
       gap: 50px;
@@ -114,6 +104,11 @@
 </head>
 <body>
 
+  <!-- 🔥 Background Video -->
+  <video autoplay loop muted playsinline>
+    <source src="background.mp4" type="video/mp4" />
+  </video>
+
   <!-- 🌀 Animated Heading -->
   <h1 id="title">
     <span style="--x: -300px; --y: -200px; --r: -90deg;">A</span>
@@ -144,7 +139,7 @@
   </div>
 
   <script>
-    // Delay each letter's fly-in animation
+    // Slight delay between each letter flying in
     const spans = document.querySelectorAll("h1 span");
     spans.forEach((span, i) => {
       span.style.animationDelay = `${i * 0.15}s`;
