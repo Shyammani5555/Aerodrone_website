@@ -23,25 +23,29 @@
       overflow: hidden;
     }
 
-    /* Main heading animation */
+    /* Heading setup */
     h1 {
+      position: relative;
       font-size: 80px;
       font-weight: 900;
       letter-spacing: 5px;
       text-transform: uppercase;
       display: flex;
       gap: 8px;
+      color: white;
       text-shadow:
         2px 2px 0 #999,
         4px 4px 0 #666,
         6px 6px 0 #333,
         8px 8px 20px rgba(255, 255, 255, 0.5);
+      overflow: hidden;
     }
 
+    /* Each letter flies in */
     h1 span {
       opacity: 0;
       transform: translate(var(--x), var(--y)) scale(0.2) rotate(var(--r));
-      animation: flyin 1.5s ease-out forwards, glow 2s ease-in-out infinite alternate;
+      animation: flyin 1.5s ease-out forwards;
     }
 
     @keyframes flyin {
@@ -51,23 +55,25 @@
       }
     }
 
-    /* 🌟 Wave glow effect after flying */
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-        color: #ffffff;
-      }
-      50% {
-        text-shadow: 0 0 25px #00ffff, 0 0 50px #00ffff;
-        color: #aaffff;
-      }
-      100% {
-        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-        color: #ffffff;
-      }
+    /* 💡 Blue light sweep after assembly */
+    h1::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(0,255,255,0.8), transparent);
+      transform: skewX(-20deg);
+      animation: sweep 2s ease-in-out 3s forwards;
     }
 
-    /* Social icons */
+    @keyframes sweep {
+      0% { left: -150%; }
+      100% { left: 150%; }
+    }
+
+    /* Social buttons */
     .socials {
       display: flex;
       gap: 50px;
@@ -138,10 +144,10 @@
   </div>
 
   <script>
-    // Delay for flying + wave glow sequence
+    // Delay each letter's fly-in animation
     const spans = document.querySelectorAll("h1 span");
     spans.forEach((span, i) => {
-      span.style.animationDelay = `${i * 0.2}s`;
+      span.style.animationDelay = `${i * 0.15}s`;
     });
   </script>
 </body>
