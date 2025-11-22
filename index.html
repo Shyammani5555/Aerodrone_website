@@ -101,9 +101,92 @@ video {
       height: 50px;
       filter: brightness(0) invert(1);
     }
+
+    /* Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+}
+
+.navbar .logo {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.navbar ul li a:hover {
+  color: #00eaff;
+  text-shadow: 0 0 10px #00eaff;
+}
+    /* ABOUT SECTION */
+.about-section {
+  width: 100%;
+  padding: 120px 10%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  margin-top: 100vh; /* ensures it appears after your main animation */
+  text-align: center;
+  color: white;
+}
+
+.about-section h2 {
+  font-size: 50px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #00eaff;
+  text-shadow: 0 0 15px #00eaff;
+}
+
+.about-section p {
+  font-size: 22px;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: auto;
+  opacity: 0.9;
+}
+
+
+    
   </style>
 </head>
 <body>
+
+  <!-- 🌐 Navigation Bar -->
+<nav class="navbar">
+  <div class="logo">AERODRONE</div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#members">Members</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
 
   <!-- 🔥 Background Video -->
   <video autoplay loop muted playsinline>
@@ -146,5 +229,17 @@ video {
       span.style.animationDelay = `${i * 0.15}s`;
     });
   </script>
+
+  <!-- 🟦 ABOUT SECTION -->
+<section id="about" class="about-section">
+  <h2>About Aerodrone Club</h2>
+  <p>
+    Aerodrone Club is a community of drone enthusiasts focused on drone building,
+    aerial photography, racing, innovation, and modern aerodynamics.  
+    We conduct workshops, hands-on training, and real-time drone flying sessions
+    for students who want to explore the world of UAV technology.
+  </p>
+</section>
+
 </body>
 </html>
